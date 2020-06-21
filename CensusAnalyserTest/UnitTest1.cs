@@ -19,6 +19,7 @@ namespace CensusAnalyserTest
 
         private static readonly string States_Code_File_Path = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv";
         private static readonly string Wrong_States_Code_File_Path = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\IndiaStateCode.csv";
+        private static readonly string Wrong_States_Code_Delimeter = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCodeWrongDelimeter.csv";
 
 
         /// <summary>
@@ -113,6 +114,19 @@ namespace CensusAnalyserTest
             catch(CSABuilderException e)
             {
                 Assert.AreEqual(CSABuilderException.ExceptionType.Type_Incorrect, e.EType);
+            }
+        }
+
+        [Test]
+        public void Wrong_Delimeter_Of_StateCode_ShouldReturnException()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadIndiaStateCode(Wrong_States_Code_Delimeter);
+            }
+            catch (CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, e.EType);
             }
         }
     }
