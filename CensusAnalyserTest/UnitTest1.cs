@@ -102,5 +102,18 @@ namespace CensusAnalyserTest
                 Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.EType);
             }
         }
+
+        [Test]
+        public void Wrong_FileType_StatesData_ShouldReturnException()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadIndiaStateCode(Wrong_India_Census_Type_FilePath);
+            }
+            catch(CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.Type_Incorrect, e.EType);
+            }
+        }
     }
 }
