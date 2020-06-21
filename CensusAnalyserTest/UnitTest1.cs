@@ -16,6 +16,8 @@ namespace CensusAnalyserTest
         private static readonly string Wrong_India_Census_Delimeter = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusWrongDelimeter.csv";
         private static readonly string Wrong_India_Census_Header = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
 
+        private static readonly string States_Code_File_Path = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv";
+
 
         /// <summary>
         /// count no of record in india census csv
@@ -77,6 +79,13 @@ namespace CensusAnalyserTest
             {
                 Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, "");
             }
+        }
+
+        [Test]
+        public void CheckMatchedRecordsOfStatesCodes()
+        {
+            int records=CensusAnalyserManager.LoadIndiaStateCode(States_Code_File_Path);
+            Assert.AreEqual(37, records);
         }
     }
 }
