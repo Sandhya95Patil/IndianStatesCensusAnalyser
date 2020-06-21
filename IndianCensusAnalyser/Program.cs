@@ -2,11 +2,13 @@
 
 namespace IndianCensusAnalyser
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome To The Indian State Census Analyser");
+
+            CensusAnalyserManager.LoadIndiaCensusData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
         }
     }
 }
