@@ -73,7 +73,7 @@ namespace CensusAnalyserTest
             {
                 CensusAnalyserManager.LoadIndiaCensusData(Wrong_India_Census_Header);
             }
-            catch(CSABuilderException e)
+            catch(CSABuilderException)
             {
                 Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, "");
             }

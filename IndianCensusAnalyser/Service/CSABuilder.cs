@@ -43,5 +43,25 @@ namespace IndianCensusAnalyser.Service
                 throw new CSABuilderException(CSABuilderException.ExceptionType.Header_Incorrrect, e.Message);
             }
         }
+
+        public List<IndiaStatesCodeData> LoadStateCSVData(string csvStatesCodeFilePath)
+        {
+            List<IndiaStatesCodeData> records = new List<IndiaStatesCodeData>();
+            try
+            {
+                //using csvHelper to read csv Data and convert into list
+                using (var reader = new StreamReader(csvStatesCodeFilePath))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    records = csv.GetRecords<IndiaStatesCodeData>().ToList();
+                }
+                return records;
+            }
+
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using IndianCensusAnalyser.Interface;
 using IndianCensusAnalyser.Model;
+using IndianCensusAnalyser.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,14 @@ namespace IndianCensusAnalyser
             List<IndiaStateCensusData> indianCensusData = csvBuilder.LoadCensusStateData(indianCensusCSVFilePath);
             Dictionary<string, IndiaStateCensusData> dictionaryIndianCensus = indianCensusData.ToDictionary(m => m.State);
             return dictionaryIndianCensus.Count;
+        }
+
+        public static int LoadIndiaStateCode(string indianStateCensusCSVFilePath)
+        {
+            ICSABuilder csvBuilder = CSABuilderFactory.CreateCSVBuilder();
+            List<IndiaStatesCodeData> csvDataTable = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
+            Dictionary<string, IndiaStatesCodeData> dicionarytStateCensus = csvDataTable.ToDictionary(x => x.StateCode);
+            return dicionarytStateCensus.Count;
         }
     }
 }
