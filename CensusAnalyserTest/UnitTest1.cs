@@ -129,5 +129,18 @@ namespace CensusAnalyserTest
                 Assert.AreEqual(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, e.EType);
             }
         }
+
+        [Test]
+        public void Wrong_Header_Of_StateCode_ShouldReturnException()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadIndiaStateCode(States_Code_File_Path);
+            }
+            catch(CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, e.EType);
+            }
+        }
     }
 }

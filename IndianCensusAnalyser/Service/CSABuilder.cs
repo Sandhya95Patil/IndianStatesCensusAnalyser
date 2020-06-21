@@ -65,6 +65,10 @@ namespace IndianCensusAnalyser.Service
             {
                 throw new CSABuilderException(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, e.Message);
             }
+            catch(HeaderValidationException e)
+            {
+                throw new CSABuilderException(CSABuilderException.ExceptionType.Header_Incorrrect, e.Message);
+            }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
