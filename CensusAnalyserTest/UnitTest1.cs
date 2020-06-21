@@ -12,7 +12,10 @@ namespace CensusAnalyserTest
         }
         private static readonly string India_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
         private static readonly string Wrong_India_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
-        private static readonly string Wrong_India_Census_Type_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\IndiaStateData.txt";
+        private static readonly string Wrong_India_Census_Type_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateData.txt";
+        private static readonly string Wrong_India_Census_Delimeter = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusWrongDelimeter.csv";
+        private static readonly string Wrong_India_Census_Header = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
+
 
         /// <summary>
         /// count no of record in india census csv
@@ -38,7 +41,7 @@ namespace CensusAnalyserTest
         }
         
         [Test]
-        public void Wrong_FileType_ReturnException()
+        public void Wrong_FileType_ShouldReturnException()
         {
             try
             {
@@ -47,6 +50,32 @@ namespace CensusAnalyserTest
             catch (CSABuilderException e)
             {
                 Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.Message);
+            }
+        }
+
+        [Test]
+        public void Wrong_Delimeter_ShouldReturnException()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadIndiaCensusData(Wrong_India_Census_Delimeter);
+            }
+            catch (CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, e.Message);
+            }
+        }
+
+        [Test]
+        public void Wrong_Header_ShouldReturnException()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadIndiaCensusData(Wrong_India_Census_Header);
+            }
+            catch(CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, "");
             }
         }
     }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
+using MissingFieldException = CsvHelper.MissingFieldException;
 
 namespace IndianCensusAnalyser.Service
 {
@@ -34,7 +34,14 @@ namespace IndianCensusAnalyser.Service
             {
                 throw new CSABuilderException(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.Message);
             }
-           
+            catch (MissingFieldException e)
+            {
+                throw new CSABuilderException(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, e.Message);
+            }
+            catch (HeaderValidationException e)
+            {
+                throw new CSABuilderException(CSABuilderException.ExceptionType.Header_Incorrrect, e.Message);
+            }
         }
     }
 }
