@@ -57,7 +57,10 @@ namespace IndianCensusAnalyser.Service
                 }
                 return records;
             }
-
+            catch (FileNotFoundException e)
+            {
+                throw new CSABuilderException(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.Message);
+            }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
