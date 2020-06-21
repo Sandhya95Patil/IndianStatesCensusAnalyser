@@ -1,4 +1,5 @@
 using IndianCensusAnalyser;
+using IndianCensusAnalyser.Exceptions;
 using NUnit.Framework;
 
 namespace CensusAnalyserTest
@@ -10,6 +11,8 @@ namespace CensusAnalyserTest
         {
         }
         private static readonly string India_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
+        private static readonly string Wrong_India_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
+
         /// <summary>
         /// count no of record in india census csv
         /// </summary>        
@@ -18,6 +21,21 @@ namespace CensusAnalyserTest
         {
             int indiaCensusCSVDataCount = CensusAnalyserManager.LoadIndiaCensusData(India_Census_FilePath);
             Assert.AreEqual(29, indiaCensusCSVDataCount);
+        }
+
+        [Test]
+        public void Wrong_FilePath_ReturnException()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadIndiaCensusData(Wrong_India_Census_FilePath);
+            }
+            catch (CSABuilderException)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, "No such file exception");
+            }
+
+
         }
     }
 }
