@@ -26,10 +26,15 @@ namespace IndianCensusAnalyser.Service
                 }
                 return numOfRecords;
             }
+            catch (DirectoryNotFoundException e)
+            {
+                throw new CSABuilderException(CSABuilderException.ExceptionType.Type_Incorrect, e.Message);
+            }
             catch (FileNotFoundException e)
             {
                 throw new CSABuilderException(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.Message);
             }
+           
         }
     }
 }

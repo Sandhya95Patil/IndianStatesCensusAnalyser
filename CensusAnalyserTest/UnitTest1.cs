@@ -12,6 +12,7 @@ namespace CensusAnalyserTest
         }
         private static readonly string India_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
         private static readonly string Wrong_India_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
+        private static readonly string Wrong_India_Census_Type_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\IndiaStateData.txt";
 
         /// <summary>
         /// count no of record in india census csv
@@ -34,8 +35,19 @@ namespace CensusAnalyserTest
             {
                 Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, "No such file exception");
             }
-
-
+        }
+        
+        [Test]
+        public void Wrong_FileType_ReturnException()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadIndiaCensusData(Wrong_India_Census_Type_FilePath);
+            }
+            catch (CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.Message);
+            }
         }
     }
 }
