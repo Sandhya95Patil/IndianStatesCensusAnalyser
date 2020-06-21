@@ -9,10 +9,6 @@ namespace IndianCensusAnalyser
 {
     public class CensusAnalyserManager
     {
-        /// <summary>
-        /// load india state census data into map
-        /// </summary>
-        /// <returns>size of dictionary</returns>
         public static int LoadIndiaCensusData(string indianCensusCSVFilePath)
         {
             ICSABuilder csvBuilder = CSABuilderFactory.CreateCSVBuilder();

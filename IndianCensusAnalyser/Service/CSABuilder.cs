@@ -1,9 +1,12 @@
-﻿using IndianCensusAnalyser.Exceptions;
+﻿using CsvHelper;
+using IndianCensusAnalyser.Exceptions;
 using IndianCensusAnalyser.Interface;
 using IndianCensusAnalyser.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace IndianCensusAnalyser.Service
@@ -15,22 +18,12 @@ namespace IndianCensusAnalyser.Service
             List<IndiaStateCensusData> numOfRecords = new List<IndiaStateCensusData>();
             try
             {
-                string[] lines;
-                var list = new List<string>();
-                var fileStream = new FileStream(csvFilePath, FileMode.Open, FileAccess.Read);
-                int numOfEntries = 0;
-
-                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+                //using csvHelper to read csv Data and convert into list
+                using (var reader = new StreamReader(csvFilePath))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    string line;
-                    while ((line = streamReader.ReadLine()) != null)
-                    {
-                        Console.WriteLine(line);
-                        numOfEntries++;
-                        list.Add(line);
-                    }
+                    numOfRecords = csv.GetRecords<IndiaStateCensusData>().ToList();
                 }
-                lines = list.ToArray();
                 return numOfRecords;
             }
             catch (FileNotFoundException e)
