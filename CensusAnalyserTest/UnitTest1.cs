@@ -147,14 +147,19 @@ namespace CensusAnalyserTest
         }
 
         [Test]
-        public void Check_Start_State_Of_SortedState()
+        public void Check_Start_State_Of_SortedState_ShouldMacthing()
         {
             string stateCensusJsonData= CensusAnalyserManager.SortStatesByAlphabeticalOrder(India_Census_FilePath);
             List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateCensusJsonData);
             Assert.AreEqual("Andhra Pradesh", sortedList[0].State);
-
         }
 
-       
+       [Test]
+       public void Check_End_State_Of_SortedState_ShouldMatching()
+        {
+            string stateCensusJsonData = CensusAnalyserManager.SortStatesByAlphabeticalOrder(India_Census_FilePath);
+            List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateCensusJsonData);
+            Assert.AreEqual("West Bengal", sortedList[28].State);
+        }
     }
 }
