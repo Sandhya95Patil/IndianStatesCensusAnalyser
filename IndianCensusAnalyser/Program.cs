@@ -7,8 +7,9 @@ namespace IndianCensusAnalyser
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome To The Indian State Census Analyser");
-            CensusAnalyserManager.LoadIndiaCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
-          //  CensusAnalyserManager.LoadIndiaStateCode(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");
+            //  CensusAnalyserManager.LoadIndiaCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
+            //  CensusAnalyserManager.LoadIndiaStateCode(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");
+            CensusAnalyserManager.SortStatesByAlphabeticalOrder(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
         }
     }
 }
