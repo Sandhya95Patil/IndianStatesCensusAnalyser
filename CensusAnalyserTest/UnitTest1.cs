@@ -1,6 +1,9 @@
 using IndianCensusAnalyser;
 using IndianCensusAnalyser.Exceptions;
+using IndianCensusAnalyser.Model;
+using Nancy.Json;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.IO;
 
 namespace CensusAnalyserTest
@@ -142,5 +145,16 @@ namespace CensusAnalyserTest
                 Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, e.EType);
             }
         }
+
+        [Test]
+        public void Check_Start_State_Of_SortedState()
+        {
+            string stateCensusJsonData= CensusAnalyserManager.SortStatesByAlphabeticalOrder(India_Census_FilePath);
+            List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateCensusJsonData);
+            Assert.AreEqual("Andhra Pradesh", sortedList[0].State);
+
+        }
+
+       
     }
 }

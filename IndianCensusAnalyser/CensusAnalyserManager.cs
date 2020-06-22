@@ -35,7 +35,7 @@ namespace IndianCensusAnalyser
             List<StateCensusData> sortedStates = statesCensusData.OrderBy(x => x.State).ToList();
             string json = JsonConvert.SerializeObject(sortedStates);
             return json;
-
         }
+
     }
 }
