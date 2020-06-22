@@ -13,16 +13,16 @@ namespace IndianCensusAnalyser.Service
 {
     public class CSABuilder : ICSABuilder
     {
-        public List<IndiaStateCensusData> LoadCensusStateData(string csvFilePath)
+        public List<StateCensusData> LoadCensusStateData(string csvFilePath)
         {
-            List<IndiaStateCensusData> numOfRecords = new List<IndiaStateCensusData>();
+            List<StateCensusData> numOfRecords = new List<StateCensusData>();
             try
             {
                 //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(csvFilePath))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    numOfRecords = csv.GetRecords<IndiaStateCensusData>().ToList();
+                    numOfRecords = csv.GetRecords<StateCensusData>().ToList();
                 }
                 return numOfRecords;
             }
@@ -44,16 +44,16 @@ namespace IndianCensusAnalyser.Service
             }
         }
 
-        public List<IndiaStatesCodeData> LoadStateCSVData(string csvStatesCodeFilePath)
+        public List<StatesCodeData> LoadStateCSVData(string csvStatesCodeFilePath)
         {
-            List<IndiaStatesCodeData> records = new List<IndiaStatesCodeData>();
+            List<StatesCodeData> records = new List<StatesCodeData>();
             try
             {
                 //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(csvStatesCodeFilePath))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    records = csv.GetRecords<IndiaStatesCodeData>().ToList();
+                    records = csv.GetRecords<StatesCodeData>().ToList();
                 }
                 return records;
             }

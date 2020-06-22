@@ -10,19 +10,19 @@ namespace IndianCensusAnalyser
 {
     public class CensusAnalyserManager
     {
-        public static int LoadIndiaCensusData(string indianCensusCSVFilePath)
+        public static int LoadIndiaCensusStatesData(string indianCensusCSVFilePath)
         {
             ICSABuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<StateCensusData> indianCensusData = csvBuilder.LoadCensusStateData(indianCensusCSVFilePath);
-            Dictionary<string, StateCensusData> dictionaryIndianCensus = indianCensusData.ToDictionary(m => m.State);
+            List<StateCensusData> censusData = csvBuilder.LoadCensusStateData(indianCensusCSVFilePath);
+            Dictionary<string, StateCensusData> dictionaryIndianCensus = censusData.ToDictionary(m => m.State);
             return dictionaryIndianCensus.Count;
         }
 
-        public static int LoadIndiaStateCode(string indianStateCensusCSVFilePath)
+        public static int LoadIndiaStateSCodeData(string indianStateCensusCSVFilePath)
         {
             ICSABuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<StatesCodeData> csvDataTable = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
-            Dictionary<string, StatesCodeData> dicionarytStateCensus = csvDataTable.ToDictionary(x => x.StateCode);
+            List<StatesCodeData> statesCodesData = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
+            Dictionary<string, StatesCodeData> dicionarytStateCensus = statesCodesData.ToDictionary(x => x.StateCode);
             return dicionarytStateCensus.Count;
         }
     }

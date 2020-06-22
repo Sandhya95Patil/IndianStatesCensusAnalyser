@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IndianCensusAnalyser.Model
 {
-    public class IndiaStateCensusData
+    public class StateCensusData
     {
         public string State { get; set; }
         public double Population { get; set; }
