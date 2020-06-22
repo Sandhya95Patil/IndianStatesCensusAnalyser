@@ -44,7 +44,7 @@ namespace IndianCensusAnalyser.Service
             }
         }
 
-        public List<StatesCodeData> LoadStateCSVData(string csvStatesCodeFilePath)
+        public List<StatesCodeData> LoadStateCodesData(string csvStatesCodeFilePath)
         {
             List<StatesCodeData> records = new List<StatesCodeData>();
             try

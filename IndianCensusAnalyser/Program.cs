@@ -9,7 +9,8 @@ namespace IndianCensusAnalyser
             Console.WriteLine("Welcome To The Indian State Census Analyser");
             //  CensusAnalyserManager.LoadIndiaCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
             //  CensusAnalyserManager.LoadIndiaStateCode(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");
-            CensusAnalyserManager.SortStatesByAlphabeticalOrder(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
+            //CensusAnalyserManager.SortStatesByAlphabeticalOrder(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
+            CensusAnalyserManager.SortedStateCodesByAlphabeticalOrder(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");
         }
     }
 }
