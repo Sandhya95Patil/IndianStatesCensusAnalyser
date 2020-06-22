@@ -178,12 +178,23 @@ namespace CensusAnalyserTest
             Assert.AreEqual("PY", sortedList[28].StateCode);
         }
 
+        /// <summary>
+        /// Use Case 5
+        /// </summary>
         [Test]
-        public void Check_Population_Wise_Sorted_Should_Return_Result_Higher_Population()
+        public void Check_Population_Wise_Sorted_Should_Return_Result_Higher_State_By_Population()
         {
             string statePopulationJsonData = CensusAnalyserManager.SortedStatePopulation(India_Census_FilePath);
             List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(statePopulationJsonData);
             Assert.AreEqual("Uttar Pradesh", sortedList[28].State);
+        }
+
+       [Test]
+       public void Check_Density_Wise_Sorted_Should_Return_Higher_State_By_DensityPerSqKm()
+        {
+            string stateDensityPerSqKm = CensusAnalyserManager.SortedStateByDensityPerSqKm(India_Census_FilePath);
+            List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateDensityPerSqKm);
+            Assert.AreEqual("Bihar", sortedList[28].State);
         }
     }
 }

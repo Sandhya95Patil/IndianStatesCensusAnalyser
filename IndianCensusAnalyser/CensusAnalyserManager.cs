@@ -56,6 +56,15 @@ namespace IndianCensusAnalyser
             string statePopulationInJsonFormat = JsonConvert.SerializeObject(sortedPopulation);
             return statePopulationInJsonFormat;
         }
+
+        public static string SortedStateByDensityPerSqKm(string indianStateFilePath)
+        {
+            ICSABuilder builder = CSVBuilderFactory.CreateCSVBuilder();
+            List<StateCensusData> stateCensusData = builder.LoadCensusStateData(indianStateFilePath);
+            List<StateCensusData> sortedDensityPerSqKm = stateCensusData.OrderBy(x => x.DensityPerSqKm).ToList();
+            string stateDensityPerSqKmJsonInFormat = JsonConvert.SerializeObject(sortedDensityPerSqKm);
+            return stateDensityPerSqKmJsonInFormat;
+        }
     }
 }
 
