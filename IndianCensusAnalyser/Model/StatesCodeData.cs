@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IndianCensusAnalyser.Model
 {
-    public class IndiaStatesCodeData
+    public class StatesCodeData
     {
         public string StateName { get; set; }
         public string StateCode { get; set; }

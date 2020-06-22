@@ -7,9 +7,9 @@ namespace IndianCensusAnalyser.Interface
 {
     public interface ICSABuilder
     {
-        public List<IndiaStateCensusData> LoadCensusStateData(string csvFilePath);
+        public List<StateCensusData> LoadCensusStateData(string csvFilePath);
 
-        public List<IndiaStatesCodeData> LoadStateCSVData(string csvStatesCodeFilePath);
+        public List<StatesCodeData> LoadStateCSVData(string csvStatesCodeFilePath);
 
     }
 }

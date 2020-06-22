@@ -13,16 +13,16 @@ namespace IndianCensusAnalyser
         public static int LoadIndiaCensusData(string indianCensusCSVFilePath)
         {
             ICSABuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaStateCensusData> indianCensusData = csvBuilder.LoadCensusStateData(indianCensusCSVFilePath);
-            Dictionary<string, IndiaStateCensusData> dictionaryIndianCensus = indianCensusData.ToDictionary(m => m.State);
+            List<StateCensusData> indianCensusData = csvBuilder.LoadCensusStateData(indianCensusCSVFilePath);
+            Dictionary<string, StateCensusData> dictionaryIndianCensus = indianCensusData.ToDictionary(m => m.State);
             return dictionaryIndianCensus.Count;
         }
 
         public static int LoadIndiaStateCode(string indianStateCensusCSVFilePath)
         {
             ICSABuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaStatesCodeData> csvDataTable = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
-            Dictionary<string, IndiaStatesCodeData> dicionarytStateCensus = csvDataTable.ToDictionary(x => x.StateCode);
+            List<StatesCodeData> csvDataTable = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
+            Dictionary<string, StatesCodeData> dicionarytStateCensus = csvDataTable.ToDictionary(x => x.StateCode);
             return dicionarytStateCensus.Count;
         }
     }
