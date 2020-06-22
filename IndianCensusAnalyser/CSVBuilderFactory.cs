@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IndianCensusAnalyser
 {
-    public class CSABuilderFactory
+    public class CSVBuilderFactory
     {
         public static ICSABuilder CreateCSVBuilder()
         {
