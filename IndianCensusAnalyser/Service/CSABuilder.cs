@@ -20,6 +20,7 @@ namespace IndianCensusAnalyser.Service
             {
                 //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(csvFilePath))
+                ///Cultur is used to determine the default delimeter, ending, & formatting when type converting
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
                     numOfRecords = csv.GetRecords<StateCensusData>().ToList();

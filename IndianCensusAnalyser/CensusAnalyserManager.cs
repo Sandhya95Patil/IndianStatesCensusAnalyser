@@ -1,6 +1,7 @@
 ﻿using IndianCensusAnalyser.Interface;
 using IndianCensusAnalyser.Model;
 using IndianCensusAnalyser.Service;
+using LanguageExt;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -43,8 +44,18 @@ namespace IndianCensusAnalyser
             ICSABuilder csvuilder = CSVBuilderFactory.CreateCSVBuilder();
             List<StatesCodeData> stateCodes = csvuilder.LoadStateCodesData(indianStateCodesFilePath);
             List<StatesCodeData> sortedStateCode = stateCodes.OrderBy(x => x.StateCode).ToList();
-            string StateCodesInJsonFormat = JsonConvert.SerializeObject(sortedStateCode);
-            return StateCodesInJsonFormat;
+            string stateCodesInJsonFormat = JsonConvert.SerializeObject(sortedStateCode);
+            return stateCodesInJsonFormat;
+        }
+        
+        public static string SortedStatePopulation(string indianStateFilePath)
+        {
+            ICSABuilder builder = CSVBuilderFactory.CreateCSVBuilder();
+            List<StateCensusData> stateCensusData = builder.LoadCensusStateData(indianStateFilePath);
+            List<StateCensusData> sortedPopulation = stateCensusData.OrderBy(x => x.Population).ToList();
+            string statePopulationInJsonFormat = JsonConvert.SerializeObject(sortedPopulation);
+            return statePopulationInJsonFormat;
         }
     }
 }
+

@@ -177,5 +177,13 @@ namespace CensusAnalyserTest
             List<StatesCodeData> sortedList = new JavaScriptSerializer().Deserialize<List<StatesCodeData>>(stateCodesJsonData);
             Assert.AreEqual("PY", sortedList[28].StateCode);
         }
+
+        [Test]
+        public void Check_Population_Wise_Sorted_Should_Return_Result_Higher_Population()
+        {
+            string statePopulationJsonData = CensusAnalyserManager.SortedStatePopulation(India_Census_FilePath);
+            List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(statePopulationJsonData);
+            Assert.AreEqual("Uttar Pradesh", sortedList[28].State);
+        }
     }
 }
