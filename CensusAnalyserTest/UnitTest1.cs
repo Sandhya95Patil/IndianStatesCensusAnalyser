@@ -161,5 +161,13 @@ namespace CensusAnalyserTest
             List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateCensusJsonData);
             Assert.AreEqual("West Bengal", sortedList[28].State);
         }
+
+        [Test]
+        public void Check_Start_StateCode_Of_SortedStateCodes_ShouldMatch()
+        {
+            string stateCodesJsonData = CensusAnalyserManager.SortedStateCodesByAlphabeticalOrder(States_Code_File_Path);
+            List<StatesCodeData> sortedList = new JavaScriptSerializer().Deserialize<List<StatesCodeData>>(stateCodesJsonData);
+            Assert.AreEqual("AD", sortedList[0].StateCode);
+        }
     }
 }
