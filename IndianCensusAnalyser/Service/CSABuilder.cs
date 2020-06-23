@@ -2,18 +2,27 @@
 using IndianCensusAnalyser.Exceptions;
 using IndianCensusAnalyser.Interface;
 using IndianCensusAnalyser.Model;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using MissingFieldException = CsvHelper.MissingFieldException;
+
 
 namespace IndianCensusAnalyser.Service
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using MissingFieldException = CsvHelper.MissingFieldException;
+
+    /// <summary>
+    ///CSV Builder class implement interface
+    /// </summary>
     public class CSABuilder : ICSABuilder
     {
-     
+        /// <summary>
+        /// Method to load indian states data
+        /// </summary>
+        /// <param name="csvFilePath">csvFilePath parameter</param>
+        /// <returns>return number of records</returns>
+
         public List<StateCensusDAO> LoadCensusStateData(string csvFilePath)
         {
             List<StateCensusDAO> numOfRecords = new List<StateCensusDAO>();
@@ -53,6 +62,11 @@ namespace IndianCensusAnalyser.Service
             }
         }
 
+        /// <summary>
+        /// Method to load indian states codes
+        /// </summary>
+        /// <param name="csvStatesCodeFilePath">csvStatesCodeFilePath parameter</param>
+        /// <returns>return number of records</returns>
         public List<StateCodesDAO> LoadStateCodesData(string csvStatesCodeFilePath)
         {
             List<StateCodesDAO> records = new List<StateCodesDAO>();
@@ -92,6 +106,11 @@ namespace IndianCensusAnalyser.Service
             }
         }
 
+        /// <summary>
+        /// Method to load the us states data
+        /// </summary>
+        /// <param name="csvUSStateFilePath">csvUSStateFilePath parameter</param>
+        /// <returns>return number records</returns>
         public List<USCensusDAO> LoadUSStateCensusData(string csvUSStateFilePath)
         {
             List<USCensusDAO> records = new List<USCensusDAO>();

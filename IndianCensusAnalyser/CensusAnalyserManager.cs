@@ -109,6 +109,11 @@
             return stateDensityPerSqKmJsonInFormat;
         }
 
+        /// <summary>
+        /// Method to load us state census data
+        /// </summary>
+        /// <param name="usCensusCSVFilePath"></param>
+        /// <returns></returns>
         public static Dictionary<string, USCensusDAO> LoadUSCensusStatesData(string usCensusCSVFilePath)
         {
             ICSABuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
@@ -117,6 +122,11 @@
             return dictionaryIndianCensus;
         }
 
+        /// <summary>
+        /// Method to sort us state by population
+        /// </summary>
+        /// <param name="usCensusCSVFilePath"></param>
+        /// <returns></returns>
         public static string SortedUSStatePopulationWise(string usCensusCSVFilePath)
         {
             ICSABuilder builder = CSVBuilderFactory.CreateCSVBuilder();
@@ -125,8 +135,6 @@
             string statePolpulationJsonInFormat = JsonConvert.SerializeObject(sortedPopulation);
             return statePolpulationJsonInFormat;
         }
-
-        
     }
 }
 

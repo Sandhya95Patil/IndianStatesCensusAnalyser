@@ -1,11 +1,20 @@
-﻿using IndianCensusAnalyser.Model;
-using System;
-using System.Collections.Generic;
-
+﻿
 namespace IndianCensusAnalyser
 {
+    using IndianCensusAnalyser.Model;
+    using Nancy.Json;
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Program class
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Main method
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome To The Indian State Census Analyser");
@@ -28,6 +37,7 @@ namespace IndianCensusAnalyser
 
                             Console.WriteLine($"StateName: {data.Value.State}, Population:  {data.Value.Population}, Density: {data.Value.DensityPerSqKm}, Area: {data.Value.AreaInSqKm}");
                         }
+                        Console.WriteLine("Number of states in india" + allStatesData.Count);
                         break;
                     case 2:
                         Dictionary<string, StateCodesDAO> allStateCodes = CensusAnalyserManager.LoadIndiaStateSCodeData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");
@@ -42,8 +52,17 @@ namespace IndianCensusAnalyser
                         {
                             Console.WriteLine($"State Id: {data.Value.StateId}, State Name: {data.Value.State}, State Population: {data.Value.Population}, State Population Density : {data.Value.PopulationDensity}, State Total Area: {data.Value.TotalArea}, State Water Area : {data.Value.WaterArea}, State Land Area : {data.Value.LandArea}, State Housing Units : {data.Value.HousingUnits}, State Housing Density : {data.Value.HousingDensity}");
                         }
+                        Console.WriteLine("Number of states in us" + allUSState);
                         break;
                     case 4:
+                        string usStateDataInJsonFormat = CensusAnalyserManager.SortedUSStatePopulationWise(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv");
+                        List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(usStateDataInJsonFormat);
+                        foreach (var data in sortedList)
+                        {
+                            Console.WriteLine("Sorted state by population: "+ data.Population);
+                        }
+                        break;
+                    case 5:
                         flag = false;
                         break;
                     default:

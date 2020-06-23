@@ -256,6 +256,9 @@ namespace CensusAnalyserTest
             Assert.AreEqual("Bihar", sortedList[28].State);
         }
 
+        /// <summary>
+        /// Use case 8.1 Check no of states should match
+        /// </summary>
         [Test]
         public void GivenUSCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
         {
@@ -264,7 +267,7 @@ namespace CensusAnalyserTest
         }
 
         /// <summary>
-        /// Use case 7 Check area wise sorted state should match
+        /// Use case 8.2 Wrong file path should raised eception
         /// </summary>
         [Test]
         public void USCensus_Wrong_File_Path_Should_Raised_Exception()
@@ -279,6 +282,9 @@ namespace CensusAnalyserTest
             }
         }
 
+        /// <summary>
+        /// Use case 8.3 Wrong file type should raised exception
+        /// </summary>
         [Test]
         public void USCensus_Wrong_File_Type_Should_Raised_Exception()
         {
@@ -293,7 +299,9 @@ namespace CensusAnalyserTest
             }
         }
 
-
+        /// <summary>
+        /// Use case 8.4 Wrong delimeter should raised exception
+        /// </summary>
         [Test]
         public void USCensus_Wrong_Delimeter_Should_Raised_Exception()
         {
@@ -307,7 +315,9 @@ namespace CensusAnalyserTest
             }
         }
 
-
+        /// <summary>
+        /// Use case 8.5 Wrong header should raised exception
+        /// </summary>
         [Test]
         public void USCensus_Wrong_Header_Should_Raised_Exception()
         {

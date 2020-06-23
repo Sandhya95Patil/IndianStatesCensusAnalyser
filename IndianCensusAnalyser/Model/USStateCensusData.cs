@@ -1,8 +1,4 @@
-﻿using LanguageExt;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace IndianCensusAnalyser.Model
 {
     public class USStateCensusData
