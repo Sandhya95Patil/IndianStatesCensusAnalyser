@@ -24,6 +24,9 @@ namespace CensusAnalyserTest
         private static readonly string Wrong_States_Code_File_Path = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\IndiaStateCode.csv";
         private static readonly string Wrong_States_Code_Delimeter = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCodeWrongDelimeter.csv";
 
+        private static readonly string US_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv";
+
+
 
         /// <summary>
         /// Use case 1.1 count no of record in india census csv file 
@@ -250,5 +253,11 @@ namespace CensusAnalyserTest
             Assert.AreEqual("Bihar", sortedList[28].State);
         }
 
+        [Test]
+        public void GivenUSCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
+        {
+            int indiaCensusCSVDataCount = CensusAnalyserManager.LoadUSCensusStatesData(US_Census_FilePath);
+            Assert.AreEqual(51, indiaCensusCSVDataCount);
+        }
     }
 }

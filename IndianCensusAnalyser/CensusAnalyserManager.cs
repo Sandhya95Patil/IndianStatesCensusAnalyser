@@ -107,6 +107,14 @@
             string stateDensityPerSqKmJsonInFormat = JsonConvert.SerializeObject(sortedDensityPerSqKm);
             return stateDensityPerSqKmJsonInFormat;
         }
+
+        public static int LoadUSCensusStatesData(string usCensusCSVFilePath)
+        {
+            ICSABuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<USStateCensusData> censusData = csvBuilder.LoadUSStateCensusData(usCensusCSVFilePath);
+            Dictionary<string, USStateCensusData> dictionaryIndianCensus = censusData.ToDictionary(m => m.State);
+            return dictionaryIndianCensus.Count;
+        }
     }
 }
 

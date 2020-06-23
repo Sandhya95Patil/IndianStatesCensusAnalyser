@@ -13,6 +13,7 @@ namespace IndianCensusAnalyser.Service
 {
     public class CSABuilder : ICSABuilder
     {
+     
         public List<StateCensusData> LoadCensusStateData(string csvFilePath)
         {
             List<StateCensusData> numOfRecords = new List<StateCensusData>();
@@ -67,6 +68,37 @@ namespace IndianCensusAnalyser.Service
                 throw new CSABuilderException(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, e.Message);
             }
             catch(HeaderValidationException e)
+            {
+                throw new CSABuilderException(CSABuilderException.ExceptionType.Header_Incorrrect, e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<USStateCensusData> LoadUSStateCensusData(string csvUSStateFilePath)
+        {
+            List<USStateCensusData> records = new List<USStateCensusData>();
+            try
+            {
+                //using csvHelper to read csv Data and convert into list
+                using (var reader = new StreamReader(csvUSStateFilePath))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    records = csv.GetRecords<USStateCensusData>().ToList();
+                }
+                return records;
+            }
+            catch (FileNotFoundException e)
+            {
+                throw new CSABuilderException(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.Message);
+            }
+            catch (MissingFieldException e)
+            {
+                throw new CSABuilderException(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, e.Message);
+            }
+            catch (HeaderValidationException e)
             {
                 throw new CSABuilderException(CSABuilderException.ExceptionType.Header_Incorrrect, e.Message);
             }

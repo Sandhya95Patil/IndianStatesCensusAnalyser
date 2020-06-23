@@ -10,6 +10,6 @@ namespace IndianCensusAnalyser.Interface
         public List<StateCensusData> LoadCensusStateData(string csvFilePath);
 
         public List<StatesCodeData> LoadStateCodesData(string csvStatesCodeFilePath);
-
+        public List<USStateCensusData> LoadUSStateCensusData(string csvUSStateFilePath);
     }
 }
