@@ -1,13 +1,13 @@
-using IndianCensusAnalyser;
-using IndianCensusAnalyser.Exceptions;
-using IndianCensusAnalyser.Model;
-using Nancy.Json;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.IO;
 
 namespace CensusAnalyserTest
 {
+    using IndianCensusAnalyser;
+    using IndianCensusAnalyser.Exceptions;
+    using IndianCensusAnalyser.Model;
+    using Nancy.Json;
+    using NUnit.Framework;
+    using System.Collections.Generic;
+
     public class Tests
     {
         [SetUp]
@@ -26,7 +26,7 @@ namespace CensusAnalyserTest
 
 
         /// <summary>
-        /// count no of record in india census csv
+        /// Use case 1.1 count no of record in india census csv file 
         /// </summary>        
         [Test]
         public void GivenCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
@@ -35,6 +35,9 @@ namespace CensusAnalyserTest
             Assert.AreEqual(29, indiaCensusCSVDataCount);
         }
 
+        /// <summary>
+        /// Use case 1.2 Wrong file path should raised exception
+        /// </summary>
         [Test]
         public void Wrong_FilePath_ReturnException()
         {
@@ -48,6 +51,9 @@ namespace CensusAnalyserTest
             }
         }
         
+        /// <summary>
+        /// Use case 1.3 Wrong file type should raised exception
+        /// </summary>
         [Test]
         public void Wrong_FileType_ShouldReturnException()
         {
@@ -61,6 +67,9 @@ namespace CensusAnalyserTest
             }
         }
 
+        /// <summary>
+        /// Use case 1.4 Wrong delimeter should raised exception
+        /// </summary>
         [Test]
         public void Wrong_Delimeter_ShouldReturnException()
         {
@@ -74,6 +83,9 @@ namespace CensusAnalyserTest
             }
         }
 
+        /// <summary>
+        /// Use case 1.5 Wrong header should raised exception
+        /// </summary>
         [Test]
         public void Wrong_Header_ShouldReturnException()
         {
@@ -87,6 +99,9 @@ namespace CensusAnalyserTest
             }
         }
 
+        /// <summary>
+        /// Use case 2.1 Cont number of state code records should match
+        /// </summary>
         [Test]
         public void Check_Matched_Records_Of_States_Codes()
         {
@@ -94,6 +109,9 @@ namespace CensusAnalyserTest
             Assert.AreEqual(37, records);
         }
 
+        /// <summary>
+        /// Use case 2.2 Wrong file path should raised exception
+        /// </summary>
         [Test]
         public void Wrong_FilePath_Of_StatesCode_Should_Return_Exception()
         {
@@ -107,6 +125,9 @@ namespace CensusAnalyserTest
             }
         }
 
+        /// <summary>
+        /// Use case 2.3 Wrong file type should raised exception
+        /// </summary>
         [Test]
         public void Wrong_FileType_StatesData_ShouldReturnException()
         {
@@ -120,6 +141,9 @@ namespace CensusAnalyserTest
             }
         }
 
+        /// <summary>
+        /// Use case 2.4 Wrong delimeter should raised exception
+        /// </summary>
         [Test]
         public void Wrong_Delimeter_Of_StateCode_ShouldReturnException()
         {
@@ -133,6 +157,9 @@ namespace CensusAnalyserTest
             }
         }
 
+        /// <summary>
+        /// Use case 2.5 Wrong Wrong header should raised exception
+        /// </summary>
         [Test]
         public void Wrong_Header_Of_StateCode_ShouldReturnException()
         {
@@ -146,6 +173,9 @@ namespace CensusAnalyserTest
             }
         }
 
+        /// <summary>
+        /// Use case 3.1 Check start state of sorted states should match
+        /// </summary>
         [Test]
         public void Check_Start_State_Of_SortedState_ShouldMacthing()
         {
@@ -154,7 +184,10 @@ namespace CensusAnalyserTest
             Assert.AreEqual("Andhra Pradesh", sortedList[0].State);
         }
 
-       [Test]
+        /// <summary>
+        /// Use case 3.2 Check last state of sorted states should match
+        /// </summary>
+        [Test]
        public void Check_End_State_Of_SortedState_ShouldMatching()
         {
             string stateCensusJsonData = CensusAnalyserManager.SortStatesByAlphabeticalOrder(India_Census_FilePath);
@@ -162,6 +195,9 @@ namespace CensusAnalyserTest
             Assert.AreEqual("West Bengal", sortedList[28].State);
         }
 
+        /// <summary>
+        /// Use case 4.1 Check last state code of sorted states should match
+        /// </summary>
         [Test]
         public void Check_Start_StateCode_Of_SortedStateCodes_ShouldMatch()
         {
@@ -170,6 +206,9 @@ namespace CensusAnalyserTest
             Assert.AreEqual("AD", sortedList[0].StateCode);
         }
 
+        /// <summary>
+        /// Use case 4.2 Check last state code of sorted states should match
+        /// </summary>
         [Test]
         public void Check_Last_StateCode_Of_SortedStateCode_ShouldMatch()
         {
@@ -179,7 +218,7 @@ namespace CensusAnalyserTest
         }
 
         /// <summary>
-        /// Use Case 5
+        /// Use case 5 Check population wise sorted state should match
         /// </summary>
         [Test]
         public void Check_Population_Wise_Sorted_Should_Return_Result_Higher_State_By_Population()
@@ -189,12 +228,27 @@ namespace CensusAnalyserTest
             Assert.AreEqual("Uttar Pradesh", sortedList[28].State);
         }
 
-       [Test]
+        /// <summary>
+        /// Use case 6 Check density wise sorted state should match
+        /// </summary>
+        [Test]
        public void Check_Density_Wise_Sorted_Should_Return_Higher_State_By_DensityPerSqKm()
         {
             string stateDensityPerSqKm = CensusAnalyserManager.SortedStateByDensityPerSqKm(India_Census_FilePath);
             List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateDensityPerSqKm);
             Assert.AreEqual("Bihar", sortedList[28].State);
         }
+
+        /// <summary>
+        /// Use case 7 Check area wise sorted state should match
+        /// </summary>
+        [Test]
+        public void Check_Area_Wise_Sorted_Should_Return_Higher_State_By_AreaInSqKm()
+        {
+            string stateDensityPerSqKm = CensusAnalyserManager.SortedStateByDensityPerSqKm(India_Census_FilePath);
+            List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateDensityPerSqKm);
+            Assert.AreEqual("Bihar", sortedList[28].State);
+        }
+
     }
 }
