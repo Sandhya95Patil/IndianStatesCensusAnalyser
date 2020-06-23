@@ -321,5 +321,16 @@ namespace CensusAnalyserTest
             }
         }
 
+        /// <summary>
+        /// Use case 9 Check population wise sorted state should match
+        /// </summary>
+        [Test]
+        public void Check_Population_Wise_Sorted_Should_Return_Result_Higher_USState_By_Population()
+        {
+            string statePopulationJsonData = CensusAnalyserManager.SortedUSStatePopulationWise(US_Census_FilePath);
+            List<USStateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<USStateCensusData>>(statePopulationJsonData);
+            Assert.AreEqual("California", sortedList[50].State);
+        }
+
     }
 }

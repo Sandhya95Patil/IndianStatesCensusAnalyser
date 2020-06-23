@@ -117,12 +117,12 @@
             return dictionaryIndianCensus;
         }
 
-        public static string SortedStatePopulationWise(string usCensusCSVFilePath)
+        public static string SortedUSStatePopulationWise(string usCensusCSVFilePath)
         {
             ICSABuilder builder = CSVBuilderFactory.CreateCSVBuilder();
             List<USCensusDAO> usStateDAO = builder.LoadUSStateCensusData(usCensusCSVFilePath);
-            List<USCensusDAO> sortedDensityPerSqKm = usStateDAO.OrderBy(x => x.Population).ToList();
-            string statePolpulationJsonInFormat = JsonConvert.SerializeObject(sortedDensityPerSqKm);
+            List<USCensusDAO> sortedPopulation = usStateDAO.OrderBy(x => x.Population).ToList();
+            string statePolpulationJsonInFormat = JsonConvert.SerializeObject(sortedPopulation);
             return statePolpulationJsonInFormat;
         }
 
