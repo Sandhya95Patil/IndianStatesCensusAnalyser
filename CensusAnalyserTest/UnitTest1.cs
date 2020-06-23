@@ -35,8 +35,8 @@ namespace CensusAnalyserTest
         [Test]
         public void GivenCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
         {
-            int indiaCensusCSVDataCount = CensusAnalyserManager.LoadIndiaCensusStatesData(India_Census_FilePath);
-            Assert.AreEqual(29, indiaCensusCSVDataCount);
+            Dictionary<string, StateCensusData> indiaCensusCSVDataCount = CensusAnalyserManager.LoadIndiaCensusStatesData(India_Census_FilePath);
+            Assert.AreEqual(29, indiaCensusCSVDataCount.Count);
         }
 
         /// <summary>
@@ -277,7 +277,17 @@ namespace CensusAnalyserTest
             }
         }
 
-   
-
+        [Test]
+        public void USCensus_Wrong_File_Type_Should_Raised_Exception()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadUSCensusStatesData(Wrong_India_Census_Type_FilePath);
+            }
+            catch (CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.Type_Incorrect, e.EType);
+            }
+        }
     }
 }

@@ -17,12 +17,12 @@
         /// </summary>
         /// <param name="indianCensusCSVFilePath">indianCensusCSVFilePath parameter</param>
         /// <returns>return  number of states</returns>
-        public static int LoadIndiaCensusStatesData(string indianCensusCSVFilePath)
+        public static Dictionary<string, StateCensusData> LoadIndiaCensusStatesData(string indianCensusCSVFilePath)
         {
             ICSABuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
             List<StateCensusData> censusData = csvBuilder.LoadCensusStateData(indianCensusCSVFilePath);
             Dictionary<string, StateCensusData> dictionaryIndianCensus = censusData.ToDictionary(m => m.State);
-            return dictionaryIndianCensus.Count;
+            return dictionaryIndianCensus;
         }
 
         /// <summary>
