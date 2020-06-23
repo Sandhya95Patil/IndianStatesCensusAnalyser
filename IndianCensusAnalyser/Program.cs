@@ -9,14 +9,48 @@ namespace IndianCensusAnalyser
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome To The Indian State Census Analyser");
-             Dictionary<string, StateCensusData>  allStatesData= CensusAnalyserManager.LoadIndiaCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
-             foreach (KeyValuePair<string, StateCensusData> data in allStatesData)
+
+            bool flag = true;
+            while (flag)
             {
-                Console.WriteLine($"=======>{data.Key}, {data.Value}");
-            }
-            //  CensusAnalyserManager.LoadIndiaStateCode(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");
-            //CensusAnalyserManager.SortStatesByAlphabeticalOrder(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
-            CensusAnalyserManager.SortedStatePopulation(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
+                Console.WriteLine("*********************************");
+                Console.WriteLine("1: Indian States Information");
+                Console.WriteLine("2: Indian States Codes");
+                Console.WriteLine("3: Us States Information");
+
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Dictionary<string, StateCensusData> allStatesData = CensusAnalyserManager.LoadIndiaCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
+                        foreach (KeyValuePair<string, StateCensusData> data in allStatesData)
+                        {
+
+                            Console.WriteLine($"StateName: {data.Value.State}, Population:  {data.Value.Population}, Density: {data.Value.DensityPerSqKm}, Area: {data.Value.AreaInSqKm}");
+                        }
+                        break;
+                    case 2:
+                        Dictionary<string, StatesCodeData> allStateCodes = CensusAnalyserManager.LoadIndiaStateSCodeData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");
+                        foreach (KeyValuePair<string, StatesCodeData> data in allStateCodes)
+                        {
+                            Console.WriteLine($"State Name: {data.Value.StateName}, State Code{data.Value.StateCode}");
+                        }
+                        break;
+                    case 3:
+                        Dictionary<string, USStateCensusData> allUSState = CensusAnalyserManager.LoadUSCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv");
+                        foreach (KeyValuePair<string, USStateCensusData> data in allUSState)
+                        {
+                            Console.WriteLine($"State Id: {data.Value.StateId}, State Name: {data.Value.State}, State Population: {data.Value.Population}, State Population Density : {data.Value.PopulationDensity}, State Total Area: {data.Value.TotalArea}, State Water Area : {data.Value.WaterArea}, State Land Area : {data.Value.LandArea}, State Housing Units : {data.Value.HousingUnits}, State Housing Density : {data.Value.HousingDensity}");
+                        }
+                        break;
+                    case 4:
+                        flag = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid, Please enter valid number");
+                        break;
+                }
+             }
         }
     }
 }
