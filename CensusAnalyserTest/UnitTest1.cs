@@ -25,6 +25,7 @@ namespace CensusAnalyserTest
         private static readonly string Wrong_States_Code_Delimeter = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCodeWrongDelimeter.csv";
 
         private static readonly string US_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv";
+        private static readonly string Wrong_USCensus_File_Path = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\USCensusData.csv";
 
 
 
@@ -259,5 +260,24 @@ namespace CensusAnalyserTest
             int indiaCensusCSVDataCount = CensusAnalyserManager.LoadUSCensusStatesData(US_Census_FilePath);
             Assert.AreEqual(51, indiaCensusCSVDataCount);
         }
+
+        /// <summary>
+        /// Use case 7 Check area wise sorted state should match
+        /// </summary>
+        [Test]
+        public void USCensus_Wrong_File_Path_Should_Raised_Exception()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadUSCensusStatesData(Wrong_USCensus_File_Path);
+            }
+            catch (CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.EType);
+            }
+        }
+
+   
+
     }
 }
