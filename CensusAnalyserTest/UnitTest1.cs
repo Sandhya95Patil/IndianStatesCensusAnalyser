@@ -12,11 +12,10 @@ namespace CensusAnalyserTest
     {
         [SetUp]
         public void Setup()
-        {
-        }
+        { }
         private static readonly string India_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
         private static readonly string Wrong_India_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\IndiaStateCensusData.csv";
-        private static readonly string Wrong_India_Census_Type_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateData.txt";
+        private static readonly string Wrong_India_Census_File_Type = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\StateData.txt";
         private static readonly string Wrong_India_Census_Delimeter = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusWrongDelimeter.csv";
         private static readonly string Wrong_India_Census_Header = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
 
@@ -26,6 +25,9 @@ namespace CensusAnalyserTest
 
         private static readonly string US_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv";
         private static readonly string Wrong_USCensus_File_Path = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\USCensusData.csv";
+        private static readonly string Wrong_USCensus_File_Type = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\StateData.txt";
+        private static readonly string Wrong_USCensus_Delimeter = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusDataWrongDelimeter.csv";
+        private static readonly string Wrong_USCensus_Header = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusDataWrongHeadery.csv";
 
 
 
@@ -54,7 +56,7 @@ namespace CensusAnalyserTest
                 Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.EType);
             }
         }
-        
+
         /// <summary>
         /// Use case 1.3 Wrong file type should raised exception
         /// </summary>
@@ -63,7 +65,7 @@ namespace CensusAnalyserTest
         {
             try
             {
-                CensusAnalyserManager.LoadIndiaCensusStatesData(Wrong_India_Census_Type_FilePath);
+                CensusAnalyserManager.LoadIndiaCensusStatesData(Wrong_India_Census_File_Type);
             }
             catch (CSABuilderException e)
             {
@@ -97,7 +99,7 @@ namespace CensusAnalyserTest
             {
                 CensusAnalyserManager.LoadIndiaCensusStatesData(Wrong_India_Census_Header);
             }
-            catch(CSABuilderException e)
+            catch (CSABuilderException e)
             {
                 Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, e.EType);
             }
@@ -109,7 +111,7 @@ namespace CensusAnalyserTest
         [Test]
         public void Check_Matched_Records_Of_States_Codes()
         {
-            Dictionary<string, StatesCodeData> records=CensusAnalyserManager.LoadIndiaStateSCodeData(States_Code_File_Path);
+            Dictionary<string, StateCodesDAO> records = CensusAnalyserManager.LoadIndiaStateSCodeData(States_Code_File_Path);
             Assert.AreEqual(37, records.Count);
         }
 
@@ -137,9 +139,9 @@ namespace CensusAnalyserTest
         {
             try
             {
-                CensusAnalyserManager.LoadIndiaStateSCodeData(Wrong_India_Census_Type_FilePath);
+                CensusAnalyserManager.LoadIndiaStateSCodeData(Wrong_India_Census_File_Type);
             }
-            catch(CSABuilderException e)
+            catch (CSABuilderException e)
             {
                 Assert.AreEqual(CSABuilderException.ExceptionType.Type_Incorrect, e.EType);
             }
@@ -171,7 +173,7 @@ namespace CensusAnalyserTest
             {
                 CensusAnalyserManager.LoadIndiaStateSCodeData(States_Code_File_Path);
             }
-            catch(CSABuilderException e)
+            catch (CSABuilderException e)
             {
                 Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, e.EType);
             }
@@ -183,7 +185,7 @@ namespace CensusAnalyserTest
         [Test]
         public void Check_Start_State_Of_SortedState_ShouldMacthing()
         {
-            string stateCensusJsonData= CensusAnalyserManager.SortStatesByAlphabeticalOrder(India_Census_FilePath);
+            string stateCensusJsonData = CensusAnalyserManager.SortStatesByAlphabeticalOrder(India_Census_FilePath);
             List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateCensusJsonData);
             Assert.AreEqual("Andhra Pradesh", sortedList[0].State);
         }
@@ -192,7 +194,7 @@ namespace CensusAnalyserTest
         /// Use case 3.2 Check last state of sorted states should match
         /// </summary>
         [Test]
-       public void Check_End_State_Of_SortedState_ShouldMatching()
+        public void Check_End_State_Of_SortedState_ShouldMatching()
         {
             string stateCensusJsonData = CensusAnalyserManager.SortStatesByAlphabeticalOrder(India_Census_FilePath);
             List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateCensusJsonData);
@@ -236,7 +238,7 @@ namespace CensusAnalyserTest
         /// Use case 6 Check density wise sorted state should match
         /// </summary>
         [Test]
-       public void Check_Density_Wise_Sorted_Should_Return_Higher_State_By_DensityPerSqKm()
+        public void Check_Density_Wise_Sorted_Should_Return_Higher_State_By_DensityPerSqKm()
         {
             string stateDensityPerSqKm = CensusAnalyserManager.SortedStateByDensityPerSqKm(India_Census_FilePath);
             List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(stateDensityPerSqKm);
@@ -257,7 +259,7 @@ namespace CensusAnalyserTest
         [Test]
         public void GivenUSCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
         {
-             Dictionary<string, USStateCensusData> records = CensusAnalyserManager.LoadUSCensusStatesData(US_Census_FilePath);
+            Dictionary<string, USCensusDAO> records = CensusAnalyserManager.LoadUSCensusStatesData(US_Census_FilePath);
             Assert.AreEqual(51, records.Count);
         }
 
@@ -282,12 +284,42 @@ namespace CensusAnalyserTest
         {
             try
             {
-                CensusAnalyserManager.LoadUSCensusStatesData(Wrong_India_Census_Type_FilePath);
+                CensusAnalyserManager.LoadUSCensusStatesData(Wrong_USCensus_File_Type);
+
             }
             catch (CSABuilderException e)
             {
                 Assert.AreEqual(CSABuilderException.ExceptionType.Type_Incorrect, e.EType);
             }
         }
+
+
+        [Test]
+        public void USCensus_Wrong_Delimeter_Should_Raised_Exception()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadUSCensusStatesData(Wrong_USCensus_Delimeter);
+            }
+            catch (CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, e.EType);
+            }
+        }
+
+
+        [Test]
+        public void USCensus_Wrong_Header_Should_Raised_Exception()
+        {
+            try
+            {
+                CensusAnalyserManager.LoadUSCensusStatesData(Wrong_USCensus_Header);
+            }
+            catch (CSABuilderException e)
+            {
+                Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, e.EType);
+            }
+        }
+
     }
 }

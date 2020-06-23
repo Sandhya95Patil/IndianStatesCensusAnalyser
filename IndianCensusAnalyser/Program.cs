@@ -30,15 +30,15 @@ namespace IndianCensusAnalyser
                         }
                         break;
                     case 2:
-                        Dictionary<string, StatesCodeData> allStateCodes = CensusAnalyserManager.LoadIndiaStateSCodeData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");
-                        foreach (KeyValuePair<string, StatesCodeData> data in allStateCodes)
+                        Dictionary<string, StateCodesDAO> allStateCodes = CensusAnalyserManager.LoadIndiaStateSCodeData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");
+                        foreach (KeyValuePair<string, StateCodesDAO> data in allStateCodes)
                         {
-                            Console.WriteLine($"State Name: {data.Value.StateName}, State Code{data.Value.StateCode}");
+                            Console.WriteLine($"State Name: {data.Value.StateName}, State Code: {data.Value.StateCode}");
                         }
                         break;
                     case 3:
-                        Dictionary<string, USStateCensusData> allUSState = CensusAnalyserManager.LoadUSCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv");
-                        foreach (KeyValuePair<string, USStateCensusData> data in allUSState)
+                        Dictionary<string, USCensusDAO> allUSState = CensusAnalyserManager.LoadUSCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv");
+                        foreach (KeyValuePair<string, USCensusDAO> data in allUSState)
                         {
                             Console.WriteLine($"State Id: {data.Value.StateId}, State Name: {data.Value.State}, State Population: {data.Value.Population}, State Population Density : {data.Value.PopulationDensity}, State Total Area: {data.Value.TotalArea}, State Water Area : {data.Value.WaterArea}, State Land Area : {data.Value.LandArea}, State Housing Units : {data.Value.HousingUnits}, State Housing Density : {data.Value.HousingDensity}");
                         }

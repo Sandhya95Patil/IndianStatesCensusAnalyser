@@ -9,7 +9,7 @@ namespace IndianCensusAnalyser.Interface
     {
         public List<StateCensusDAO> LoadCensusStateData(string csvFilePath);
 
-        public List<StatesCodeData> LoadStateCodesData(string csvStatesCodeFilePath);
-        public List<USStateCensusData> LoadUSStateCensusData(string csvUSStateFilePath);
+        public List<StateCodesDAO> LoadStateCodesData(string csvStatesCodeFilePath);
+        public List<USCensusDAO> LoadUSStateCensusData(string csvUSStateFilePath);
     }
 }

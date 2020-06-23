@@ -21,11 +21,18 @@ namespace IndianCensusAnalyser.Service
             {
                 //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(csvFilePath))
-                ///Cultur is used to determine the default delimeter, ending, & formatting when type converting
-                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-                {
-                    numOfRecords = csv.GetRecords<StateCensusDAO>().ToList();
-                }
+                    if (csvFilePath.EndsWith(".csv"))
+                    {
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            numOfRecords = csv.GetRecords<StateCensusDAO>().ToList();
+                        }
+                    }
+                    else
+                    {
+                        throw new CSABuilderException(CSABuilderException.ExceptionType.Type_Incorrect, "");
+                    }
+         
                 return numOfRecords;
             }
             catch (DirectoryNotFoundException e)
@@ -46,17 +53,25 @@ namespace IndianCensusAnalyser.Service
             }
         }
 
-        public List<StatesCodeData> LoadStateCodesData(string csvStatesCodeFilePath)
+        public List<StateCodesDAO> LoadStateCodesData(string csvStatesCodeFilePath)
         {
-            List<StatesCodeData> records = new List<StatesCodeData>();
+            List<StateCodesDAO> records = new List<StateCodesDAO>();
             try
             {
                 //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(csvStatesCodeFilePath))
-                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-                {
-                    records = csv.GetRecords<StatesCodeData>().ToList();
-                }
+                    if (csvStatesCodeFilePath.EndsWith(".csv"))
+                    {
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            records = csv.GetRecords<StateCodesDAO>().ToList();
+                        }
+                    }
+                    else
+                    {
+                        throw new CSABuilderException(CSABuilderException.ExceptionType.Type_Incorrect, "");
+                    }
+               
                 return records;
             }
             catch (FileNotFoundException e)
@@ -71,23 +86,31 @@ namespace IndianCensusAnalyser.Service
             {
                 throw new CSABuilderException(CSABuilderException.ExceptionType.Header_Incorrrect, e.Message);
             }
-            catch (Exception e)
+            catch (DirectoryNotFoundException e)
             {
-                throw new Exception(e.Message);
+                throw new CSABuilderException(CSABuilderException.ExceptionType.Type_Incorrect, e.Message);
             }
         }
 
-        public List<USStateCensusData> LoadUSStateCensusData(string csvUSStateFilePath)
+        public List<USCensusDAO> LoadUSStateCensusData(string csvUSStateFilePath)
         {
-            List<USStateCensusData> records = new List<USStateCensusData>();
+            List<USCensusDAO> records = new List<USCensusDAO>();
             try
             {
                 //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(csvUSStateFilePath))
-                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-                {
-                    records = csv.GetRecords<USStateCensusData>().ToList();
-                }
+                    if (csvUSStateFilePath.EndsWith(".csv"))
+                    {
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            records = csv.GetRecords<USCensusDAO>().ToList();
+                        }
+                    }
+                    else
+                    {
+                        throw new CSABuilderException(CSABuilderException.ExceptionType.Type_Incorrect, "");
+                    }
+
                 return records;
             }
             catch (FileNotFoundException e)
@@ -102,9 +125,9 @@ namespace IndianCensusAnalyser.Service
             {
                 throw new CSABuilderException(CSABuilderException.ExceptionType.Header_Incorrrect, e.Message);
             }
-            catch (Exception e)
+            catch(DirectoryNotFoundException e)
             {
-                throw new Exception(e.Message);
+                throw new CSABuilderException(CSABuilderException.ExceptionType.Type_Incorrect, e.Message);
             }
         }
     }
