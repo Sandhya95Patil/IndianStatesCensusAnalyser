@@ -22,8 +22,8 @@ namespace IndianCensusAnalyser
                 switch (choice)
                 {
                     case 1:
-                        Dictionary<string, StateCensusData> allStatesData = CensusAnalyserManager.LoadIndiaCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
-                        foreach (KeyValuePair<string, StateCensusData> data in allStatesData)
+                        Dictionary<string, StateCensusDAO> allStatesData = CensusAnalyserManager.LoadIndiaCensusStatesData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv");
+                        foreach (KeyValuePair<string, StateCensusDAO> data in allStatesData)
                         {
 
                             Console.WriteLine($"StateName: {data.Value.State}, Population:  {data.Value.Population}, Density: {data.Value.DensityPerSqKm}, Area: {data.Value.AreaInSqKm}");

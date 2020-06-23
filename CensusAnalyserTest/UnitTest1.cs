@@ -35,7 +35,7 @@ namespace CensusAnalyserTest
         [Test]
         public void GivenCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
         {
-            Dictionary<string, StateCensusData> indiaCensusCSVDataCount = CensusAnalyserManager.LoadIndiaCensusStatesData(India_Census_FilePath);
+            Dictionary<string, StateCensusDAO> indiaCensusCSVDataCount = CensusAnalyserManager.LoadIndiaCensusStatesData(India_Census_FilePath);
             Assert.AreEqual(29, indiaCensusCSVDataCount.Count);
         }
 

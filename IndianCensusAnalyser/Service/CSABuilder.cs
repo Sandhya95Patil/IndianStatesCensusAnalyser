@@ -14,9 +14,9 @@ namespace IndianCensusAnalyser.Service
     public class CSABuilder : ICSABuilder
     {
      
-        public List<StateCensusData> LoadCensusStateData(string csvFilePath)
+        public List<StateCensusDAO> LoadCensusStateData(string csvFilePath)
         {
-            List<StateCensusData> numOfRecords = new List<StateCensusData>();
+            List<StateCensusDAO> numOfRecords = new List<StateCensusDAO>();
             try
             {
                 //using csvHelper to read csv Data and convert into list
@@ -24,7 +24,7 @@ namespace IndianCensusAnalyser.Service
                 ///Cultur is used to determine the default delimeter, ending, & formatting when type converting
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    numOfRecords = csv.GetRecords<StateCensusData>().ToList();
+                    numOfRecords = csv.GetRecords<StateCensusDAO>().ToList();
                 }
                 return numOfRecords;
             }
