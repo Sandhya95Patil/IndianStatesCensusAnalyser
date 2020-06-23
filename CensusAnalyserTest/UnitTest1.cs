@@ -109,8 +109,8 @@ namespace CensusAnalyserTest
         [Test]
         public void Check_Matched_Records_Of_States_Codes()
         {
-            int records=CensusAnalyserManager.LoadIndiaStateSCodeData(States_Code_File_Path);
-            Assert.AreEqual(37, records);
+            Dictionary<string, StatesCodeData> records=CensusAnalyserManager.LoadIndiaStateSCodeData(States_Code_File_Path);
+            Assert.AreEqual(37, records.Count);
         }
 
         /// <summary>
@@ -257,8 +257,8 @@ namespace CensusAnalyserTest
         [Test]
         public void GivenUSCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
         {
-            int indiaCensusCSVDataCount = CensusAnalyserManager.LoadUSCensusStatesData(US_Census_FilePath);
-            Assert.AreEqual(51, indiaCensusCSVDataCount);
+             Dictionary<string, USStateCensusData> records = CensusAnalyserManager.LoadUSCensusStatesData(US_Census_FilePath);
+            Assert.AreEqual(51, records.Count);
         }
 
         /// <summary>

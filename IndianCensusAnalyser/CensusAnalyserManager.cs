@@ -30,12 +30,12 @@
         /// </summary>
         /// <param name="indianStateCensusCSVFilePath">indianStateCensusCSVFilePath parameter</param>
         /// <returns>return number of state codes</returns>
-        public static int LoadIndiaStateSCodeData(string indianStateCensusCSVFilePath)
+        public static Dictionary<string, StatesCodeData> LoadIndiaStateSCodeData(string indianStateCensusCSVFilePath)
         {
             ICSABuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
             List<StatesCodeData> statesCodesData = csvBuilder.LoadStateCodesData(indianStateCensusCSVFilePath);
             Dictionary<string, StatesCodeData> dicionarytStateCensus = statesCodesData.ToDictionary(x => x.StateCode);
-            return dicionarytStateCensus.Count;
+            return dicionarytStateCensus;
         }
 
         /// <summary>
@@ -108,12 +108,12 @@
             return stateDensityPerSqKmJsonInFormat;
         }
 
-        public static int LoadUSCensusStatesData(string usCensusCSVFilePath)
+        public static Dictionary<string, USStateCensusData> LoadUSCensusStatesData(string usCensusCSVFilePath)
         {
             ICSABuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
             List<USStateCensusData> censusData = csvBuilder.LoadUSStateCensusData(usCensusCSVFilePath);
             Dictionary<string, USStateCensusData> dictionaryIndianCensus = censusData.ToDictionary(m => m.State);
-            return dictionaryIndianCensus.Count;
+            return dictionaryIndianCensus;
         }
     }
 }
