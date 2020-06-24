@@ -1,4 +1,10 @@
 ﻿
+//-----------------------------------------------------------------------
+// <copyright file="Program.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+// <creater name="Sandhya Patil"/>
+//-----------------------------------------------------------------------
 namespace IndianCensusAnalyser
 {
     using IndianCensusAnalyser.Model;
@@ -38,7 +44,7 @@ namespace IndianCensusAnalyser
 
                             Console.WriteLine($"StateName: {data.Value.State}, Population:  {data.Value.Population}, Density: {data.Value.DensityPerSqKm}, Area: {data.Value.AreaInSqKm}");
                         }
-                        Console.WriteLine("Number of states in india" + allStatesData.Count);
+                        Console.WriteLine("Number of states in india: " + allStatesData.Count);
                         break;
                     case 2:
                         Dictionary<string, StateCodesDAO> allStateCodes = CensusAnalyserManager.LoadIndiaStateSCodeData(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv");

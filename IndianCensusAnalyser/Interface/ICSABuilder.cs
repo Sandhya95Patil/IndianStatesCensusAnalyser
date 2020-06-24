@@ -1,8 +1,13 @@
-﻿using IndianCensusAnalyser.Model;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="ICSABuilder.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+// <creater name="Sandhya Patil"/>
+//-----------------------------------------------------------------------
 namespace IndianCensusAnalyser.Interface
 {
     using System.Collections.Generic;
+    using IndianCensusAnalyser.Model;
 
     /// <summary>
     /// ICSABuilder interface

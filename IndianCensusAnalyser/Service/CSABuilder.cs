@@ -1,11 +1,15 @@
-﻿using CsvHelper;
-using IndianCensusAnalyser.Exceptions;
-using IndianCensusAnalyser.Interface;
-using IndianCensusAnalyser.Model;
-
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="CSABuilder.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+// <creater name="Sandhya Patil"/>
+//-----------------------------------------------------------------------
 namespace IndianCensusAnalyser.Service
 {
+    using CsvHelper;
+    using IndianCensusAnalyser.Exceptions;
+    using IndianCensusAnalyser.Interface;
+    using IndianCensusAnalyser.Model;
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;

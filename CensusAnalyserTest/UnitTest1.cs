@@ -1,4 +1,9 @@
-
+//-----------------------------------------------------------------------
+// <copyright file="Tests.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+// <creater name="Sandhya Patil"/>
+//-----------------------------------------------------------------------
 namespace CensusAnalyserTest
 {
     using IndianCensusAnalyser;
@@ -50,6 +55,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadIndiaCensusStatesData(Wrong_India_Census_FilePath);
+                Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, "");
             }
             catch (CSABuilderException e)
             {
@@ -353,6 +359,9 @@ namespace CensusAnalyserTest
             Assert.AreEqual("District of Columbia", sortedList[50].State);
         }
 
+        /// <summary>
+        /// Use case 10.2 Check toatal area wise sorted state should match
+        /// </summary>
         [Test]
         public void Check_TotalArea_Wise_Should_Return_Higher_USState()
         {
@@ -361,6 +370,9 @@ namespace CensusAnalyserTest
             Assert.AreEqual("Alaska", sortedList[50].State);
         }
 
+        /// <summary>
+        /// Use case 10.3 Check population density wise sorted state should match
+        /// </summary>
         [Test]
         public void Check_PopulationDensity_Wise_Should_Return_Hiigher_USState()
         {

@@ -1,9 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="CSABuilderException.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+// <creater name="Sandhya Patil"/>
+//-----------------------------------------------------------------------
 namespace IndianCensusAnalyser.Exceptions
 {
+    using System;
+
+    /// <summary>
+    /// CSABuilderException class
+    /// </summary>
     public class CSABuilderException:Exception
     {
         /// <summary>
