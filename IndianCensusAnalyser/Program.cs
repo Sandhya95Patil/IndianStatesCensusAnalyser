@@ -26,6 +26,7 @@ namespace IndianCensusAnalyser
                 Console.WriteLine("1: Indian States Information");
                 Console.WriteLine("2: Indian States Codes");
                 Console.WriteLine("3: Us States Information");
+                Console.WriteLine("4: Sorted States By Population");
 
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
