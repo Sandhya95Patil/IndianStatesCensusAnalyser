@@ -26,7 +26,7 @@ namespace IndianCensusAnalyser
                 Console.WriteLine("1: Indian States Information");
                 Console.WriteLine("2: Indian States Codes");
                 Console.WriteLine("3: Us States Information");
-                Console.WriteLine("4: Sorted States By Population");
+                Console.WriteLine("4: US State Data In JSON Format Sorted Based On Population");
 
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -57,11 +57,7 @@ namespace IndianCensusAnalyser
                         break;
                     case 4:
                         string usStateDataInJsonFormat = CensusAnalyserManager.SortedUSStatePopulationWise(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv");
-                        List<StateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<StateCensusData>>(usStateDataInJsonFormat);
-                        foreach (var data in sortedList)
-                        {
-                            Console.WriteLine("Sorted state by population: "+ data.Population);
-                        }
+                        Console.WriteLine(usStateDataInJsonFormat);
                         break;
                     case 5:
                         flag = false;
