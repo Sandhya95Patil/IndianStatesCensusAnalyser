@@ -60,7 +60,8 @@ namespace IndianCensusAnalyser
                         Console.WriteLine(usStateDataInJsonFormat);
                         break;
                     case 5:
-                        flag = false;
+                        CensusAnalyserManager.SortedUSStateByTotalAreaWise(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv");
+                       // flag = false;
                         break;
                     default:
                         Console.WriteLine("Invalid, Please enter valid number");

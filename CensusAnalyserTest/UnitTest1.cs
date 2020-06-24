@@ -69,7 +69,7 @@ namespace CensusAnalyserTest
             }
             catch (CSABuilderException e)
             {
-                Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, e.EType);
+                Assert.AreEqual(CSABuilderException.ExceptionType.Type_Incorrect, e.EType);
             }
         }
 
@@ -335,12 +335,38 @@ namespace CensusAnalyserTest
         /// Use case 9 Check population wise sorted state should match
         /// </summary>
         [Test]
-        public void Check_Population_Wise_Sorted_Should_Return_Result_Higher_USState_By_Population()
+        public void Check_Population_Wise_Sorted_Should_Return_Result_Higher()
         {
             string statePopulationJsonData = CensusAnalyserManager.SortedUSStatePopulationWise(US_Census_FilePath);
             List<USStateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<USStateCensusData>>(statePopulationJsonData);
             Assert.AreEqual("California", sortedList[50].State);
         }
 
+        /// <summary>
+        /// Use case 10.1 Check housing density wise sorted state should match
+        /// </summary>
+        [Test]
+        public void Check_HousingDensity_Wise_Should_Return_Higher_USState()
+        {
+            string stateHousingDensity = CensusAnalyserManager.SortedUSStateByHousingDensityWise(US_Census_FilePath);
+            List<USStateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<USStateCensusData>>(stateHousingDensity);
+            Assert.AreEqual("District of Columbia", sortedList[50].State);
+        }
+
+        [Test]
+        public void Check_TotalArea_Wise_Should_Return_Higher_USState()
+        {
+            string stateTotalArea = CensusAnalyserManager.SortedUSStateByTotalAreaWise(US_Census_FilePath);
+            List<USStateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<USStateCensusData>>(stateTotalArea);
+            Assert.AreEqual("Alaska", sortedList[50].State);
+        }
+
+        [Test]
+        public void Check_PopulationDensity_Wise_Should_Return_Hiigher_USState()
+        {
+            string statePopulationDensity = CensusAnalyserManager.SortedUSStateByPpulationDensityWise(US_Census_FilePath);
+            List<USStateCensusData> sortedList = new JavaScriptSerializer().Deserialize<List<USStateCensusData>>(statePopulationDensity);
+            Assert.AreEqual("District of Columbia", sortedList[50].State);
+        }
     }
 }

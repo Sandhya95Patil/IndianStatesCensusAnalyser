@@ -135,6 +135,43 @@
             string statePolpulationJsonInFormat = JsonConvert.SerializeObject(sortedPopulation);
             return statePolpulationJsonInFormat;
         }
+
+        /// <summary>
+        /// Method to sort the state data by housing density
+        /// </summary>
+        /// <param name="usCensusCSVFilePath">usCensusCSVFilePath parameter</param>
+        /// <returns>return the sorted state data</returns>
+        public static string SortedUSStateByHousingDensityWise(string usCensusCSVFilePath)
+        {
+            ICSABuilder builder = CSVBuilderFactory.CreateCSVBuilder();
+            List<USCensusDAO> usStateDAO = builder.LoadUSStateCensusData(usCensusCSVFilePath);
+            List<USCensusDAO> sortedPopulation = usStateDAO.OrderBy(x => x.HousingDensity).ToList();
+            string statePolpulationJsonInFormat = JsonConvert.SerializeObject(sortedPopulation);
+            return statePolpulationJsonInFormat;
+        }
+
+        /// <summary>
+        /// Method to sort the state data by total area
+        /// </summary>
+        /// <param name="usCensusCSVFilePath">usCensusCSVFilePath parameter</param>
+        /// <returns>return the sorted state dat</returns>
+        public static string SortedUSStateByTotalAreaWise(string usCensusCSVFilePath)
+        {
+            ICSABuilder builder = CSVBuilderFactory.CreateCSVBuilder();
+            List<USCensusDAO> usStateDAO = builder.LoadUSStateCensusData(usCensusCSVFilePath);
+            List<USCensusDAO> sortedTotalArae = usStateDAO.OrderBy(x => x.TotalArea).ToList();
+            string stateAreaJsonInFormat = JsonConvert.SerializeObject(sortedTotalArae);
+            return stateAreaJsonInFormat;
+        }
+
+        public static string SortedUSStateByPpulationDensityWise(string usCensusCSVFilePath)
+        {
+            ICSABuilder builder = CSVBuilderFactory.CreateCSVBuilder();
+            List<USCensusDAO> usStateDAO = builder.LoadUSStateCensusData(usCensusCSVFilePath);
+            List<USCensusDAO> sortedPopulationdensity = usStateDAO.OrderBy(x => x.PopulationDensity).ToList();
+            string statePopulationDensityJsonInFormat = JsonConvert.SerializeObject(sortedPopulationdensity);
+            return statePopulationDensityJsonInFormat;
+        }
     }
 }
 
