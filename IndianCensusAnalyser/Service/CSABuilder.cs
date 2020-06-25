@@ -26,14 +26,13 @@ namespace IndianCensusAnalyser.Service
         /// </summary>
         /// <param name="csvFilePath">csvFilePath parameter</param>
         /// <returns>return number of records</returns>
-
         public List<StateCensusDAO> LoadCensusStateData(string csvFilePath)
         {
             List<StateCensusDAO> numOfRecords = new List<StateCensusDAO>();
             try
             {
                 //using csvHelper to read csv Data and convert into list
-                using (var reader = new StreamReader(csvFilePath))
+                    using (var reader = new StreamReader(csvFilePath))
                     if (csvFilePath.EndsWith(".csv"))
                     {
                         using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))

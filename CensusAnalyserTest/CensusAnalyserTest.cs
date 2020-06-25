@@ -22,11 +22,12 @@ namespace CensusAnalyserTest
         private static readonly string Wrong_India_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\IndiaStateCensusData.csv";
         private static readonly string Wrong_India_Census_File_Type = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\StateData.txt";
         private static readonly string Wrong_India_Census_Delimeter = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusWrongDelimeter.csv";
-        private static readonly string Wrong_India_Census_Header = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusData.csv";
+        private static readonly string Wrong_India_Census_Header = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCensusDataWrongHeader.csv";
 
         private static readonly string States_Code_File_Path = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCode.csv";
         private static readonly string Wrong_States_Code_File_Path = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\IndiaStateCode.csv";
         private static readonly string Wrong_States_Code_Delimeter = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCodeWrongDelimeter.csv";
+        private static readonly string Wrong_State_Code_Header = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\IndiaStateCodeWrongHeader.csv";
 
         private static readonly string US_Census_FilePath = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv";
         private static readonly string Wrong_USCensus_File_Path = @"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\USCensusData.csv";
@@ -72,6 +73,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadIndiaCensusStatesData(Wrong_India_Census_File_Type);
+                Assert.AreEqual(CSABuilderException.ExceptionType.Type_Incorrect, "");
             }
             catch (CSABuilderException e)
             {
@@ -88,6 +90,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadIndiaCensusStatesData(Wrong_India_Census_Delimeter);
+                Assert.AreEqual(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, "");
             }
             catch (CSABuilderException e)
             {
@@ -104,6 +107,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadIndiaCensusStatesData(Wrong_India_Census_Header);
+                Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, "");
             }
             catch (CSABuilderException e)
             {
@@ -130,6 +134,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadIndiaStateSCodeData(Wrong_States_Code_File_Path);
+                Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, "");
             }
             catch (CSABuilderException e)
             {
@@ -146,6 +151,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadIndiaStateSCodeData(Wrong_India_Census_File_Type);
+                Assert.AreEqual(CSABuilderException.ExceptionType.Type_Incorrect, "");
             }
             catch (CSABuilderException e)
             {
@@ -162,6 +168,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadIndiaStateSCodeData(Wrong_States_Code_Delimeter);
+                Assert.AreEqual(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, "");
             }
             catch (CSABuilderException e)
             {
@@ -170,14 +177,15 @@ namespace CensusAnalyserTest
         }
 
         /// <summary>
-        /// Use case 2.5 Wrong Wrong header should raised exception
+        /// Use case 2.5 Wrong header should raised exception
         /// </summary>
         [Test]
         public void Wrong_Header_Of_StateCode_ShouldReturnException()
         {
             try
             {
-                CensusAnalyserManager.LoadIndiaStateSCodeData(States_Code_File_Path);
+                CensusAnalyserManager.LoadIndiaStateSCodeData(Wrong_State_Code_Header);
+                Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, "");
             }
             catch (CSABuilderException e)
             {
@@ -281,6 +289,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadUSCensusStatesData(Wrong_USCensus_File_Path);
+                Assert.AreEqual(CSABuilderException.ExceptionType.No_SuchFile_Exception, "");
             }
             catch (CSABuilderException e)
             {
@@ -297,6 +306,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadUSCensusStatesData(Wrong_USCensus_File_Type);
+                Assert.AreEqual(CSABuilderException.ExceptionType.Type_Incorrect, "");
 
             }
             catch (CSABuilderException e)
@@ -314,6 +324,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadUSCensusStatesData(Wrong_USCensus_Delimeter);
+                Assert.AreEqual(CSABuilderException.ExceptionType.File_Delimeter_Incorrect, "");
             }
             catch (CSABuilderException e)
             {
@@ -330,6 +341,7 @@ namespace CensusAnalyserTest
             try
             {
                 CensusAnalyserManager.LoadUSCensusStatesData(Wrong_USCensus_Header);
+                Assert.AreEqual(CSABuilderException.ExceptionType.Header_Incorrrect, "");
             }
             catch (CSABuilderException e)
             {

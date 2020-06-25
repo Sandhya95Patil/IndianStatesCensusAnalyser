@@ -1,5 +1,4 @@
-﻿
-//-----------------------------------------------------------------------
+﻿//----------------------------------------------------------------------
 // <copyright file="Program.cs" company="BridgeLabz">
 //     Company copyright tag.
 // </copyright>
@@ -8,7 +7,6 @@
 namespace IndianCensusAnalyser
 {
     using IndianCensusAnalyser.Model;
-    using Nancy.Json;
     using System;
     using System.Collections.Generic;
 
@@ -66,8 +64,7 @@ namespace IndianCensusAnalyser
                         Console.WriteLine(usStateDataInJsonFormat);
                         break;
                     case 5:
-                        CensusAnalyserManager.SortedUSStateByTotalAreaWise(@"C:\Users\Sanbhy\source\repos\IndianCensusAnalyser\IndianCensusAnalyser\CSVFiles\USCensusData.csv");
-                       // flag = false;
+                        flag = false;
                         break;
                     default:
                         Console.WriteLine("Invalid, Please enter valid number");
